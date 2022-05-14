@@ -1,0 +1,65 @@
+﻿<ContentDialog x:ConnectionId='1'
+    x:Class="NemeckySlovnik.Dialogs.AddWordDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NemeckySlovnik.Dialogs"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mucx="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d" RequestedTheme="Dark"
+    Title="Přidat nové slovo"
+    CornerRadius="7.5"
+    PrimaryButtonText="Přidat"
+    IsPrimaryButtonEnabled="False"
+                                     
+    SecondaryButtonText="Zrušit">
+
+    <ScrollViewer>
+        <StackPanel Spacing="20">
+            <ComboBox x:ConnectionId='2'                                          x:Name="wordTypePicker" Header="Vyberte typ slova" PlaceholderText="Např. sloveso, podst. jméno, ...">
+                <x:String>Sloveso</x:String>
+            </ComboBox>
+            <StackPanel x:ConnectionId='3' Visibility="Collapsed" x:Name="verbInfo" Spacing="10" Orientation="Vertical">
+                <TextBox x:ConnectionId='4' x:Name="czword" Header="Česky:" PlaceholderText="př. hrát"/>
+                <!--#region Časování -->
+                <TextBlock Margin="0, 15, 0, 0" Text="Časování slovesa"/>
+                <TextBox x:ConnectionId='5' x:Name="infword" Header="Německy (Infinitiv):" PlaceholderText="př. spielen"/>
+                <TextBox x:ConnectionId='6' x:Name="prätword" Header="Německy (Präteritum):" PlaceholderText="př. ich spielte"/>
+                <TextBox x:ConnectionId='7' x:Name="perfword" Header="Německy (Perfekt):" PlaceholderText="př. ich habe gespielt"/>
+                <!--#endregion -->
+                <!--#region Osoby a čísla -->
+                <TextBlock Margin="0, 15, 0, 0" Text="Osoby a čísla slovesa"/>
+                <TextBox x:ConnectionId='8' x:Name="firstsingular" Header="1. osoba, č. jednotné (ich)" PlaceholderText="př. ich spiele"/>
+                <TextBox x:ConnectionId='9' x:Name="secondsingular" Header="2. osoba, č. jednotné (du)" PlaceholderText="př. du spielst"/>
+                <TextBox x:ConnectionId='10' x:Name="thirdsingular" Header="3. osoba, č. jednotné (er/sie/es)" PlaceholderText="př. er spielt"/>
+                <TextBox x:ConnectionId='11' x:Name="firstplural" Header="1. osoba, č. množné (wir)" PlaceholderText="př. wir spielen"/>
+                <TextBox x:ConnectionId='12' x:Name="secondplural" Header="2. osoba, č. množné (ihr)" PlaceholderText="př. ihr spielt"/>
+                <TextBox x:ConnectionId='13' x:Name="thirdplural" Header="3. osoba, č. množné (sie/Sie)" PlaceholderText="př. sie spielen"/>
+                <!--#endregion -->
+                <ComboBox x:ConnectionId='14' x:Name="typePicker" Header="Typ slovesa" SelectedItem="" PlaceholderText="př. 1. Typ (gespielt)">
+                    <x:String>1. Typ (ge-kmen-t)</x:String>
+                    <x:String>2. Typ (ge-kmen-d/t-ed)</x:String>
+                    <x:String>3. Typ (končící na -ieren)</x:String>
+                    <x:String>4. Typ (neodlučitelné předpony)</x:String>
+                    <x:String>5. (odlučitelné předpony)</x:String>
+                    <x:String>Nepravidelné (ABA)</x:String>
+                    <x:String>Nepravidelné (ABB)</x:String>
+                    <x:String>Nepravidelné (ABC)</x:String>
+                    <x:String>Smíšené</x:String>
+                </ComboBox>
+                <mucx:NumberBox x:ConnectionId='15' x:Name="lectionNumberBox" Header="Lekce (nepovinné)" Value="NaN"/>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+    <ContentDialog.PrimaryButtonStyle>
+        <Style TargetType="Button">
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+    </ContentDialog.PrimaryButtonStyle>
+    <ContentDialog.SecondaryButtonStyle>
+        <Style TargetType="Button">
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+    </ContentDialog.SecondaryButtonStyle>
+</ContentDialog>
+

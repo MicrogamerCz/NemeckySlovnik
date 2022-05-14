@@ -1,0 +1,44 @@
+﻿<Page
+    x:Class="NemeckySlovnik.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NemeckySlovnik"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" RequestedTheme="Dark"
+    Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}">
+
+    <ScrollViewer>
+        <StackPanel Margin="50" Orientation="Vertical" Spacing="20" x:Name="mainPanel" x:FieldModifier="public">
+            <AutoSuggestBox Header="Vyhledat slovo (podpora vyhledání českého i německého)" x:Name="searchBox" x:FieldModifier="public"/>
+            
+            <StackPanel Orientation="Horizontal" Spacing="50">
+                <TextBlock Text="Filtry:" VerticalAlignment="Center"/>
+                <CheckBox x:Name="nounCheckBox" Content="Podstatná jména"/>
+                <CheckBox x:Name="verbCheckBox" Click="SwitchVerbCheckBoxes" Content="Slovesa"/>
+                <CheckBox Visibility="Collapsed" x:Name="regVerbCheckBox" Content="Pravidelná slovesa"/>
+                <CheckBox Visibility="Collapsed" x:Name="irregVerbCheckBox" Content="Nepravidelná slovesa"/>
+                <CheckBox Visibility="Collapsed" x:Name="mixVerbCheckBox" Content="Smíšená slovesa"/>
+            </StackPanel>
+            
+            <ListView x:Name="wordList" x:FieldModifier="public">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:BaseWordInfo">
+                        <StackPanel Padding="20" Orientation="Vertical" Spacing="20" Background="#242424" CornerRadius="7">
+                            <TextBlock Text="{x:Bind wordcz}"/>
+                            <TextBlock Text="{x:Bind wordde}"/>
+                            <TextBlock Text="{x:Bind wordtype}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <StackPanel Spacing="20" Orientation="Horizontal">
+                <Button x:Name="addWord" Click="AddWordToIndex" Content="Přidat slovo"/>
+                <Button x:Name="importIndex"  Content="Importovat index"/>
+                <Button x:Name="mergeIndex"  Content="Spojit index"/>
+                <Button x:Name="exportIndex" Content="Exportovat index"/>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
