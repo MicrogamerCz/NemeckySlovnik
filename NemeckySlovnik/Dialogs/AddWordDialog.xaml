@@ -18,9 +18,10 @@
         <StackPanel Spacing="20">
             <ComboBox SelectionChanged="ChangePanelVisibility" x:Name="wordTypePicker" Header="Vyberte typ slova" PlaceholderText="Např. sloveso, podst. jméno, ...">
                 <x:String>Sloveso</x:String>
+                <x:String>Podstatné jméno</x:String>
             </ComboBox>
+            <TextBox x:Name="czword" Header="Česky:" IsEnabled="False"/>
             <StackPanel Visibility="Collapsed" x:Name="verbInfo" Spacing="10" Orientation="Vertical">
-                <TextBox x:Name="czword" Header="Česky:" PlaceholderText="př. hrát"/>
                 <!--#region Časování -->
                 <TextBlock Margin="0, 15, 0, 0" Text="Časování slovesa"/>
                 <TextBox x:Name="infword" Header="Německy (Infinitiv):" PlaceholderText="př. spielen"/>
@@ -46,9 +47,21 @@
                     <x:String>Nepravidelné (ABB)</x:String>
                     <x:String>Nepravidelné (ABC)</x:String>
                     <x:String>Smíšené</x:String>
+                    <x:String>Modální</x:String>
                 </ComboBox>
-                <mucx:NumberBox x:Name="lectionNumberBox" Header="Lekce (nepovinné)" Value="NaN"/>
             </StackPanel>
+            <StackPanel Visibility="Collapsed" x:Name="substantivInfo" Spacing="10" Orientation="Vertical">
+                <ComboBox x:Name="substantivTypePicker" Header="Vyberte rod slova" PlaceholderText="Mužský - Maskulinum (der)">
+                    <x:String>Mužský - Maskulinum (der)</x:String>
+                    <x:String>Ženský - Feminimum (die)</x:String>
+                    <x:String>Střední - Neutrum (das)</x:String>
+                </ComboBox>
+                <CheckBox x:Name="strongWordCheck" Content="Má silné skloňování"/>
+                <TextBlock TextWrapping="WrapWholeWords" Text="Podstatná slova se silným skloňováním nemění svůj tvar v jednotném čísle (s výjimkou množného čísla a druhého pádu)"/>
+                <TextBlock TextWrapping="WrapWholeWords" Text="U slabého skloňování se mění tvar slova pro 2., 3. a 4. pád a také mají rozdílný člen. Především se jedná o podstatná jména mužského rodu a o osoby"/>
+                <TextBox x:Name="substantivBox" Header="Německy:" PlaceholderText="př. der Student"/>
+            </StackPanel>
+            <mucx:NumberBox IsEnabled="False" x:Name="lectionNumberBox" Header="Lekce (nepovinné)" Value="NaN" Minimum="0" Maximum="25"/>
         </StackPanel>
     </ScrollViewer>
     <ContentDialog.PrimaryButtonStyle>

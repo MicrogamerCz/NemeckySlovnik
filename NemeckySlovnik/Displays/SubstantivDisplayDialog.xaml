@@ -1,0 +1,34 @@
+﻿<ContentDialog
+    x:Class="NemeckySlovnik.Displays.SubstantivDisplayDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NemeckySlovnik.Displays"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title=""
+    CornerRadius="7.5"
+    SecondaryButtonText="Zavřít">
+
+    <ScrollViewer>
+        <StackPanel Spacing="10" Orientation="Vertical" x:Name="wordProperties">
+            <TextBlock Margin="0, 15, 0, 0" x:Name="czword" Visibility="Collapsed"/>
+            <TextBlock x:Name="substantivType" Visibility="Collapsed"/>
+            <TextBlock x:Name="hasStrongPronounciationBox" Visibility="Collapsed"/>
+            <TextBlock Margin="0, 15, 0, 0" x:Name="firstSingular" Visibility="Collapsed"/>
+            <TextBlock x:Name="secondSingular" Visibility="Collapsed"/>
+            <TextBlock x:Name="thirdSingular" Visibility="Collapsed"/>
+            <TextBlock x:Name="fourthSingular" Visibility="Collapsed"/>
+            <TextBlock Margin="0, 15, 0, 0" x:Name="firstPlural" Visibility="Collapsed"/>
+            <TextBlock x:Name="secondPlural" Visibility="Collapsed"/>
+            <TextBlock x:Name="thirdPlural" Visibility="Collapsed"/>
+            <TextBlock x:Name="fourthPlural" Visibility="Collapsed"/>
+            <TextBlock Margin="0, 15, 0, 0" x:Name="lection" Visibility="Collapsed"/>
+        </StackPanel>
+    </ScrollViewer>
+    <ContentDialog.SecondaryButtonStyle>
+        <Style TargetType="Button">
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+    </ContentDialog.SecondaryButtonStyle>
+</ContentDialog>

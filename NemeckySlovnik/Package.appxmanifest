@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="08a11963-6a33-483e-abe4-fade41e186bc"
-    Publisher="CN=Jakub Fousek"
-    Version="1.0.0.0" />
+    Name="NemeckySlovnik"
+    Publisher="CN=Micro"
+    Version="1.1.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="08a11963-6a33-483e-abe4-fade41e186bc" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>NemeckySlovnik</DisplayName>
-    <PublisherDisplayName>Jakub Fousek</PublisherDisplayName>
+    <PublisherDisplayName>Micro</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -42,8 +42,4 @@
       </uap:VisualElements>
     </Application>
   </Applications>
-
-  <Capabilities>
-    <Capability Name="internetClient" />
-  </Capabilities>
 </Package>

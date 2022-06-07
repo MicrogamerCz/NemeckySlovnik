@@ -1,0 +1,2 @@
+MainPackage=F:\Repos\NemeckySlovnik\NemeckySlovnik\bin\x86\Release\NemeckySlovnik_1.1.0.0_x86.msix
+SymbolPackage=F:\Repos\NemeckySlovnik\NemeckySlovnik\obj\x86\Release\Symbols\NemeckySlovnik_1.1.0.0_x86.appxsym

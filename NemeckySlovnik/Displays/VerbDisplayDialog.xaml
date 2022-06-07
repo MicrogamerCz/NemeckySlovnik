@@ -1,0 +1,40 @@
+﻿<ContentDialog
+    x:Class="NemeckySlovnik.Displays.VerbDisplayDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NemeckySlovnik.Displays"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title=""
+    CornerRadius="7.5"
+    SecondaryButtonText="Zavřít">
+
+    <ScrollViewer>
+        <StackPanel Spacing="10" Orientation="Vertical" x:Name="wordProperties">
+            <TextBlock Margin="0, 15, 0, 0" x:Name="czword" Visibility="Collapsed"/>
+            <!--#region Časování -->
+            <TextBlock Margin="0, 15, 0, 0" Text="Časování slovesa" Visibility="Collapsed"/>
+            <TextBlock x:Name="infword" Visibility="Collapsed"/>
+            <TextBlock x:Name="prätword" Visibility="Collapsed"/>
+            <TextBlock x:Name="perfword" Visibility="Collapsed"/>
+            <!--#endregion -->
+            <!--#region Osoby a čísla -->
+            <TextBlock Text="Osoby a čísla" Visibility="Collapsed"/>
+            <TextBlock x:Name="firstsingular" Visibility="Collapsed"/>
+            <TextBlock x:Name="secondsingular" Visibility="Collapsed"/>
+            <TextBlock x:Name="thirdsingular" Visibility="Collapsed"/>
+            <TextBlock x:Name="firstplural" Visibility="Collapsed"/>
+            <TextBlock x:Name="secondplural" Visibility="Collapsed"/>
+            <TextBlock x:Name="thirdplural" Visibility="Collapsed"/>
+            <!--#endregion -->
+            <TextBlock Margin="0, 15, 0, 0" x:Name="verbtype" Visibility="Collapsed"/>
+            <TextBlock x:Name="lection" Visibility="Collapsed"/>
+        </StackPanel>
+    </ScrollViewer>
+    <ContentDialog.SecondaryButtonStyle>
+        <Style TargetType="Button">
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+    </ContentDialog.SecondaryButtonStyle>
+</ContentDialog>

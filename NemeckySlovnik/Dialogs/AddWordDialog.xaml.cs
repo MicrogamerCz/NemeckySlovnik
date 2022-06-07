@@ -1,27 +1,19 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Microsoft.UI.Xaml.Controls;
+﻿using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using NemeckySlovnik.Items;
+using NemeckySlovnik;
+using NemeckySlovnik.Classes;
 
 namespace NemeckySlovnik.Dialogs
 {
     public sealed partial class AddWordDialog : ContentDialog
     {
-        public object newWord { get; private set; }
+        public Wort newWord { get; private set; }
         bool doRepeatFunc = true;
+
+        const string sloveso = "Sloveso";
+        const string podstatnéJméno = "Podstatné jméno";
+
         public AddWordDialog()
         {
             this.InitializeComponent();
@@ -35,14 +27,20 @@ namespace NemeckySlovnik.Dialogs
                 await Task.Delay(100);
                 switch (wordTypePicker.SelectedValue as string)
                 {
-                    case "Sloveso":
+                    case sloveso:
                         {
                             IsPrimaryButtonEnabled = czword.Text != string.Empty && infword.Text != string.Empty &&
                                 prätword.Text != string.Empty && perfword.Text != string.Empty &&
                                 firstsingular.Text != string.Empty && secondsingular.Text != string.Empty &&
                                 thirdsingular.Text != string.Empty && firstplural.Text != string.Empty &&
                                 secondplural.Text != string.Empty && thirdplural.Text != string.Empty &&
-                                typePicker.SelectedItem as string != string.Empty;
+                                (typePicker.SelectedItem as string) != null;
+                            break;
+                        }
+                    case podstatnéJméno:
+                        {
+                            IsPrimaryButtonEnabled = czword.Text != string.Empty && (substantivTypePicker.SelectedItem as string) != null
+                                && substantivBox.Text != string.Empty;
                             break;
                         }
                     default: break; //IsPrimaryButtonEnabled = false; return;
@@ -52,11 +50,22 @@ namespace NemeckySlovnik.Dialogs
 
         void ChangePanelVisibility(object sender, object e)
         {
+            czword.IsEnabled = true;
+            lectionNumberBox.IsEnabled = true;
             switch ((sender as ComboBox).SelectedItem as string)
             {
-                case "Sloveso":
+                case sloveso:
                     {
                         verbInfo.Visibility = Visibility.Visible;
+                        substantivInfo.Visibility = Visibility.Collapsed;
+                        czword.PlaceholderText = "př. hrát";
+                        break;
+                    }
+                case podstatnéJméno:
+                    {
+                        substantivInfo.Visibility = Visibility.Visible;
+                        verbInfo.Visibility = Visibility.Collapsed;
+                        czword.PlaceholderText = "student";
                         break;
                     }
             }
@@ -65,27 +74,22 @@ namespace NemeckySlovnik.Dialogs
         void StopRepeater(object sender, object args)
         {
             doRepeatFunc = false;
-            switch ((wordTypePicker as ComboBox).SelectedItem as string)
+            int? result = null;
+            if (!double.IsNaN(lectionNumberBox.Value)) result = (int)lectionNumberBox.Value;
+            switch (wordTypePicker.SelectedItem as string)
             {
-                case "Sloveso":
+                case sloveso:
                     {
-                        int? result = null;
-                        if (!double.IsNaN(lectionNumberBox.Value)) result = ((int)lectionNumberBox.Value);
-
-                        newWord = new Verb
-                        {
-                            czech = czword.Text,
-                            infinitiv = infword.Text,
-                            präteritum = prätword.Text,
-                            perfekt = perfword.Text,
-                            ich = firstsingular.Text,
-                            du = secondsingular.Text,
-                            erSieEs = thirdsingular.Text,
-                            wir = firstplural.Text,
-                            ihr = secondplural.Text,
-                            sieSie = thirdplural.Text,
-                            lection = result
-                        };
+                        newWord = new Wort(new Verb(czword.Text, infword.Text, prätword.Text, perfword.Text, firstsingular.Text,
+                            secondsingular.Text, thirdsingular.Text, firstplural.Text, secondplural.Text, thirdplural.Text,
+                            (Verb.VerbType)typePicker.SelectedIndex, result));
+                        break;
+                    }
+                case podstatnéJméno:
+                    {
+                        newWord = new Wort(new Substantiv(czword.Text,
+                            (Substantiv.SubstantivType)substantivTypePicker.SelectedIndex, strongWordCheck.IsChecked ?? false,
+                            result, substantivBox.Text));
                         break;
                     }
             }

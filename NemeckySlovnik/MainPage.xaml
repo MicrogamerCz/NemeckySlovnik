@@ -5,26 +5,29 @@
     xmlns:local="using:NemeckySlovnik"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mucx="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d" RequestedTheme="Dark"
-    Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}">
+    mucx:BackdropMaterial.ApplyToRootOrPageBackground="True">
 
     <ScrollViewer>
         <StackPanel Margin="50" Orientation="Vertical" Spacing="20" x:Name="mainPanel" x:FieldModifier="public">
-            <AutoSuggestBox Header="Vyhledat slovo (podpora vyhledání českého i německého)" x:Name="searchBox" x:FieldModifier="public"/>
+            <TextBox Header="Vyhledat slovo (může být v jakémkoli tvaru)" x:Name="searchBox" x:FieldModifier="public"
+                            TextChanged="SearchWord"/>
             
             <StackPanel Orientation="Horizontal" Spacing="50">
                 <TextBlock Text="Filtry:" VerticalAlignment="Center"/>
-                <CheckBox x:Name="nounCheckBox" Content="Podstatná jména"/>
+                <CheckBox x:Name="nounCheckBox" Content="Podstatná jména" Click="SubstantivFilterChecked"/>
                 <CheckBox x:Name="verbCheckBox" Click="SwitchVerbCheckBoxes" Content="Slovesa"/>
-                <CheckBox Visibility="Collapsed" x:Name="regVerbCheckBox" Content="Pravidelná slovesa"/>
-                <CheckBox Visibility="Collapsed" x:Name="irregVerbCheckBox" Content="Nepravidelná slovesa"/>
-                <CheckBox Visibility="Collapsed" x:Name="mixVerbCheckBox" Content="Smíšená slovesa"/>
+                <CheckBox Visibility="Collapsed" x:Name="regVerbCheckBox" Content="Pravidelná slovesa" Click="VerbTypeFilterChecked"/>
+                <CheckBox Visibility="Collapsed" x:Name="irregVerbCheckBox" Content="Nepravidelná slovesa" Click="VerbTypeFilterChecked"/>
+                <CheckBox Visibility="Collapsed" x:Name="mixVerbCheckBox" Content="Smíšená slovesa" Click="VerbTypeFilterChecked"/>
+                <CheckBox Visibility="Collapsed" x:Name="modalVerbCheckBox" Content="Modílní slovesa" Click="VerbTypeFilterChecked"/>
             </StackPanel>
             
-            <ListView x:Name="wordList" x:FieldModifier="public">
+            <ListView x:Name="wordList" x:FieldModifier="public" ItemClick="OnWordOpened" IsItemClickEnabled="True">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="local:BaseWordInfo">
-                        <StackPanel Padding="20" Orientation="Vertical" Spacing="20" Background="#242424" CornerRadius="7">
+                        <StackPanel Padding="20" Orientation="Vertical" Spacing="10">
                             <TextBlock Text="{x:Bind wordcz}"/>
                             <TextBlock Text="{x:Bind wordde}"/>
                             <TextBlock Text="{x:Bind wordtype}"/>
@@ -35,9 +38,8 @@
 
             <StackPanel Spacing="20" Orientation="Horizontal">
                 <Button x:Name="addWord" Click="AddWordToIndex" Content="Přidat slovo"/>
-                <Button x:Name="importIndex"  Content="Importovat index"/>
-                <Button x:Name="mergeIndex"  Content="Spojit index"/>
-                <Button x:Name="exportIndex" Content="Exportovat index"/>
+                <Button x:Name="importIndex"  Content="Přidat jiný slovnik"/>
+                <Button x:Name="exportIndex" Content="Odeslat slovník"/>
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Machine>DESKTOP-U18OM2P</Machine>
+    <Machine>DESKTOPWIN11</Machine>
     <WindowsUser>Jakub Fousek</WindowsUser>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetOsVersion>10.0</TargetOsVersion>
@@ -9,7 +9,7 @@
     <SolutionConfiguration>Debug|x86</SolutionConfiguration>
     <PackageArchitecture>x86</PackageArchitecture>
     <PackageIdentityName>08a11963-6a33-483e-abe4-fade41e186bc</PackageIdentityName>
-    <PackageIdentityPublisher>CN=Jakub Fousek</PackageIdentityPublisher>
+    <PackageIdentityPublisher>CN=Micro</PackageIdentityPublisher>
     <IntermediateOutputPath>F:\Repos\NemeckySlovnik\NemeckySlovnik\obj\x86\Debug\</IntermediateOutputPath>
     <RemoteDeploymentType>
     </RemoteDeploymentType>
@@ -19,28 +19,24 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>F:\Repos\NemeckySlovnik\NemeckySlovnik\bin\x86\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>6EEF0F75D1AA7534794A77B4DDA8A5D3AD894B0505BCA922C9895F8AB7F85889</RegisteredManifestChecksum>
-    <RegisteredPackageMoniker>08a11963-6a33-483e-abe4-fade41e186bc_1.0.0.0_x86__kdy6ht9hfhzf8</RegisteredPackageMoniker>
-    <RegisteredUserModeAppID>08a11963-6a33-483e-abe4-fade41e186bc_kdy6ht9hfhzf8!App</RegisteredUserModeAppID>
-    <RegisteredPackageID>08a11963-6a33-483e-abe4-fade41e186bc</RegisteredPackageID>
-    <RegisteredPackagePublisher>CN=Jakub Fousek</RegisteredPackagePublisher>
-    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+    <RegisteredManifestChecksum>3FC45EA1E9459C8635802CF10864BC8A84EA50E2FB8778CD3259A5B7F170CFDD</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>NemeckySlovnik_1.1.0.0_x86__hzz4dk683yma2</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>NemeckySlovnik_hzz4dk683yma2!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>NemeckySlovnik</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=Micro</RegisteredPackagePublisher>
+    <RegisteredVersion>1.1.0.0</RegisteredVersion>
   </PropertyGroup>
   <ItemGroup>
     <AppXManifest Include="F:\Repos\NemeckySlovnik\NemeckySlovnik\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-05-14T17:56:58.334</Modified>
+      <Modified>2022-06-07T13:17:27.643</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="F:\Repos\NemeckySlovnik\NemeckySlovnik\bin\x86\Debug\NemeckySlovnik.exe">
       <PackagePath>entrypoint\NemeckySlovnik.exe</PackagePath>
-      <Modified>2022-05-14T17:56:57.373</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jakub Fousek\.nuget\packages\newtonsoft.json\13.0.1\lib\netstandard2.0\Newtonsoft.Json.dll">
-      <PackagePath>Newtonsoft.Json.dll</PackagePath>
-      <Modified>2021-03-17T20:03:36.000</Modified>
+      <Modified>2022-06-07T13:17:26.321</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Jakub Fousek\.nuget\packages\runtime.win10-x86.microsoft.netcore.universalwindowsplatform\6.2.13\runtimes\win10-x86\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
@@ -90,19 +86,27 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\Repos\NemeckySlovnik\NemeckySlovnik\bin\x86\Debug\NemeckySlovnik.xr.xml">
       <PackagePath>NemeckySlovnik.xr.xml</PackagePath>
-      <Modified>2022-05-14T11:09:11.947</Modified>
+      <Modified>2022-06-07T13:03:29.512</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\Repos\NemeckySlovnik\NemeckySlovnik\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2022-05-14T17:56:57.323</Modified>
+      <Modified>2022-06-07T13:17:26.245</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\Repos\NemeckySlovnik\NemeckySlovnik\bin\x86\Debug\Dialogs\AddWordDialog.xbf">
       <PackagePath>Dialogs\AddWordDialog.xbf</PackagePath>
-      <Modified>2022-05-14T17:56:57.323</Modified>
+      <Modified>2022-06-07T13:17:26.242</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="F:\Repos\NemeckySlovnik\NemeckySlovnik\bin\x86\Debug\Displays\SubstantivDisplayDialog.xbf">
+      <PackagePath>Displays\SubstantivDisplayDialog.xbf</PackagePath>
+      <Modified>2022-06-07T13:17:26.245</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="F:\Repos\NemeckySlovnik\NemeckySlovnik\bin\x86\Debug\Displays\VerbDisplayDialog.xbf">
+      <PackagePath>Displays\VerbDisplayDialog.xbf</PackagePath>
+      <Modified>2022-06-07T13:17:26.246</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\Repos\NemeckySlovnik\NemeckySlovnik\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2022-05-14T17:56:57.323</Modified>
+      <Modified>2022-06-07T13:17:26.246</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.UniversalCRT.Debug\10.0.22000.0\\redist\Debug\x86\ucrtbased.dll">
       <PackagePath>ucrtbased.dll</PackagePath>
@@ -118,11 +122,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\Repos\NemeckySlovnik\NemeckySlovnik\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2022-05-14T17:50:47.869</Modified>
+      <Modified>2022-06-07T13:17:26.738</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\Repos\NemeckySlovnik\NemeckySlovnik\bin\x86\Debug\Core\NemeckySlovnik.exe">
       <PackagePath>NemeckySlovnik.exe</PackagePath>
-      <Modified>2022-05-14T17:56:58.323</Modified>
+      <Modified>2022-06-07T13:17:27.633</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

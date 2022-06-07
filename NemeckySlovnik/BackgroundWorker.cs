@@ -1,22 +1,11 @@
 ﻿using System;
-using System.Xml;
-using System.Xml.Serialization;
-using System.Xml.Linq;
 using System.IO;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.UI.Xaml.Controls;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Windows.Storage;
-using Windows.Storage.Streams;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
-using NemeckySlovnik.Items;
 using System.Runtime.Serialization.Formatters.Binary;
+using NemeckySlovnik.Classes;
+using System.Linq;
 
 namespace NemeckySlovnik
 {
@@ -26,41 +15,37 @@ namespace NemeckySlovnik
         public static MainPage mainPage;
 
         //List obsahující všechna slova -> slovesa, podstatná jména, atd.
-        public static List<object> words;
+        public static List<Wort> words;
+
+        //Často používané objekty
+        const string dictionaryFileName = "czde-index.nsi";
+        static readonly StorageFolder localFolder = ApplicationData.Current.LocalFolder;
 
         //Funkce, která se spustí při spuštění aplikace
         public static async void Initialize(MainPage page)
         {
-            words = new List<object>();
+            words = new List<Wort>();
             mainPage = page; //Hodí se pro referenci na některé objekty (usnadní to bolesti do budoucna)
             
-            //Tento celý blok otevře tzv. indexový soubor, kde budou všechna slova pro tuto aplikaci
-            //Jestli soubor nebude existovat, tak to vyhodí chybu a vypne vyhledávání, jinak to bude normálně fungovat
-            var indexfile = await ApplicationData.Current.LocalFolder.TryGetItemAsync("czde-index.nsi") as StorageFile;
-            if (indexfile is null)
-            {
-
-                ThrowError("Chybí indexový soubor", "Bez indexového souboru nemůže fungovat tato aplikace. Dokud nebude " +
-                    "otevřen index anebo vytvořen nový přidáním slova, vyhledávání bude vypnuto", InfoBarSeverity.Warning);
-                page.searchBox.IsEnabled = false;
-                return;
-            }
+            StorageFile indexfile = (await localFolder.TryGetItemAsync(dictionaryFileName) as StorageFile);
+            if (indexfile is null) return;
+            System.Diagnostics.Debug.WriteLine(indexfile is null);
 
             //Převede obsah souboru na použitelné objekty, které se potom převedou do výsledků vyhledávání
             BinaryFormatter bf = new BinaryFormatter();
-            using (Stream stream = await indexfile.OpenStreamForReadAsync())
-            { words = bf.Deserialize(stream) as List<object>; }
-            foreach (object word in words) page.wordList.Items.Add(new BaseWordInfo(word));
+            using (Stream stream = await indexfile.OpenStreamForReadAsync()) { words = bf.Deserialize(stream) as List<Wort>; }
+            foreach (BaseWordInfo word in from word in words select new BaseWordInfo(word)) page.wordList.Items.Add(word);
         }
-        public static async void UpdateIndexFile()
+        public static async void UpdateDictionary()
         {
-            StorageFile indexfile =
-                ((await ApplicationData.Current.LocalFolder.TryGetItemAsync("czde-index.nsi")) as StorageFile) ??
-                (await ApplicationData.Current.LocalFolder.CreateFileAsync("czde-index.nsi"));
+            StorageFile indexfile = ((await localFolder.TryGetItemAsync(dictionaryFileName)) as StorageFile) ??
+                (await localFolder.CreateFileAsync(dictionaryFileName));
             BinaryFormatter bf = new BinaryFormatter();
             using (MemoryStream stream = new MemoryStream())
             {
+                System.Diagnostics.Debug.WriteLine("Before Serialization");
                 bf.Serialize(stream, words);
+                System.Diagnostics.Debug.WriteLine("After Serialization");
                 await FileIO.WriteBytesAsync(indexfile, stream.ToArray());
             }
         }
